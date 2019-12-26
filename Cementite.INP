@@ -1,0 +1,83 @@
+r_exp 9.356736164 r_exp_dash 18.94502333 r_wp 3.887815158 r_wp_dash 7.871842015 r_p 2.816920827 r_p_dash 8.226787258 weighted_Durbin_Watson 0.7129350056 gof 0.4155097557
+iters 100000
+do_errors
+use_extrapolation 
+
+'------------------------------------------------------
+RAW(FileName)
+
+   'Analyzed results append to "Cementite_result"
+   out "Cementite-result.txt" append
+   'Record file name of raw files
+   Out_String(FileName) Out_String("	") 
+'-------------------------------------------------------
+
+	r_exp 9.356736164 r_exp_dash 18.94502333 r_wp 3.887815158 r_wp_dash 7.871842015 r_p 2.816920827 r_p_dash 8.226787258 weighted_Durbin_Watson 0.7129350056 gof 0.4155097557
+	range 1
+	bkg @ 75.80396665 12.27045554 4.768041651 -2.967666371
+	finish_X  83
+	LP_Factor( 0)
+	Rp 280
+	Rs 280
+		User_Defined_Dependence_Convolution(lor_fwhm, , , 0.03586997)
+		User_Defined_Dependence_Convolution(gauss_fwhm, , , 0.2000911)
+		User_Defined_Dependence_Convolution(lor_fwhm,  1/Cos(Th)              , , 0.0001000023)
+		User_Defined_Dependence_Convolution(gauss_fwhm,  1/Cos(Th)              , , 0.0001)
+	lam
+		ymin_on_ymax  0.0001
+		la  0.5981 lo  1.78896 lh  1
+		la  0.0503 lo  1.789879 lh  1
+		la  0.3516 lo  1.79285 lh  1
+	str 
+		LVol_FWHM_CS_G_L( 1, 17.66920061, 0.89, 24.70169672,,,cs_iron_gamma_austenite, 27.75471541)
+		e0_from_Strain( 0.001539646372,@, 0.7057219125,,)
+		r_bragg  1.310937493
+		phase_MAC 56.51577148
+		Apply_Brindley_Spherical_R_PD( 1e-005, 0.4)
+		phase_name "Iron gamma Austenite"
+		MVW( 0, 0, wt_austenite 0)
+		space_group 225
+		scale sc_iron_gamma_austenite 0.0009319013413
+		Phase_LAC_1_on_cm( 435.6545255)
+		Phase_Density_g_on_cm3( 7.708547793)
+		Cubic(a_iron_gamma_austenite 3.589035269 min =3.55; max =3.6830;)
+		site s1 num_posns 4 x =0; :  0 y =0; :  0 z =0; :  0 occ FE  0.950000127 beq  0.1 occ C  0.04999987304_LIMIT_MAX_0.05 max =0.05; beq  0.1
+		PO_Spherical_Harmonics(sh_54364b03_38, 2 load sh_Cij_prm { k00 !sh_54364b03_38_c00 1 } )
+	str 
+		LVol_FWHM_CS_G_L( 1, 12.73341067, 0.89, 17.80141929,,,@, 20.00159471_LIMIT_MIN_20 min =20; max =200;)
+		r_bragg  1.426989587
+		phase_MAC 53.72935082
+		Apply_Brindley_Spherical_R_PD( 1e-005, 0.4)
+		phase_name "Cementite"
+		MVW( 0, 0, wt_cementite 0)
+		scale @ 5.20799523e-005
+		space_group Pnma
+		Phase_LAC_1_on_cm( 421.6587261)
+		Phase_Density_g_on_cm3( 7.847828415)
+		a @ 5.076167803 max =5.15;
+		b @ 6.644744625_LIMIT_MIN_6.62 min =6.62; max =6.84;
+		c @ 4.505267995 min =4.42; max =4.62;
+		site Fe1 num_posns 8 x  0.186 y  0.063 z  0.328 occ Fe  1 beq  0.1
+		site Fe2 num_posns 4 x  0.036 y =1/4; :  0.25 z  0.852 occ Fe  1 beq  0.1
+		site C1 num_posns 4 x  0.89 y =1/4; :  0.25 z  0.45 occ C  1 beq  0.1
+	str 
+		LVol_FWHM_CS_G_L( 1, 56.95389992, 0.89, 79.62204934,,,@, 89.46297678_LIMIT_MAX_100 min =1; max =100;)
+		e0_from_Strain( 0.00426171023,@, 1.953424077,,)
+		r_bragg  0.05321492534
+		phase_MAC 56.86142654
+		Apply_Brindley_Spherical_R_PD( 1e-005, 0.4)
+		phase_name "Martensite"
+		MVW( 0, 0, wt_martensite 0)
+		scale @ 0.01764916032
+		space_group I4/mmm
+		Phase_LAC_1_on_cm( 449.6232176)
+		Phase_Density_g_on_cm3( 7.907350289)
+		Tetragonal(a 2.856156499 max =c;,c 2.887571803 min =a;)
+		site Fe1 num_posns 2 x  0 y  0 z  0 occ Fe  1 beq  0.5
+		site C num_posns 2 x !o 0.5 y !o 0.5 z  0 occ C  0.02 beq  0.5
+		PO_Spherical_Harmonics(sh_543c7dd8_85, 4 load sh_Cij_prm { y00 !sh_543c7dd8_85_c00 1 y20 sh_543c7dd8_85_c20 0.06972671196 y40 sh_543c7dd8_85_c40 0.2227102949 y44p sh_543c7dd8_85_c44p 0.6878584432 } )
+
+Out(wt_austenite, "%6.2f", "	%5.2f") 
+Out(wt_cementite, "	%6.2f", "	%5.2f")
+Out(wt_martensite, "	%6.2f", "	%5.2f")
+
